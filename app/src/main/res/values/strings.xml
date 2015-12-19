@@ -6,9 +6,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="tab_1">home1111</string>
     <string name="tab_2">home2222</string>
+    <string name="tab_3">home3333</string>
     <string name="sort">欢迎来到分类页面</string>
     <string name="person">欢迎来到个人页面</string>
     <string name="home_1">欢迎来到第一主页页面</string>
     <string name="home_2">欢迎来到第二主页页面</string>
+    <string name="home_3">欢迎来到第三主页页面</string>
 
 </resources>

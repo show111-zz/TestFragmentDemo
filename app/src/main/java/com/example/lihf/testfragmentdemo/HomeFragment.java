@@ -24,16 +24,17 @@ public class HomeFragment extends Fragment{
     private ViewPager mPager;
     private ArrayList<Fragment> fragmentsList;
     private ImageView ivBottomLine;
-    private TextView tvTabNew, tvTabHot;
+    private TextView tvTabNew, tvTabHot,tvTabLove;
 
     private int currIndex = 0;
     private int bottomLineWidth;
     private int offset = 0;
     private int position_one;
-    public final static int num = 2 ; 
+    public final static int num = 3 ;
     Fragment home1;
     Fragment home2;
-    
+    Fragment home3;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -54,9 +55,11 @@ public class HomeFragment extends Fragment{
 	  private void InitTextView(View parentView) {
 	        tvTabNew = (TextView) parentView.findViewById(R.id.tv_tab_1);
 	        tvTabHot = (TextView) parentView.findViewById(R.id.tv_tab_2);
+	        tvTabLove = (TextView) parentView.findViewById(R.id.tv_tab_3);
 
 	        tvTabNew.setOnClickListener(new MyOnClickListener(0));
 	        tvTabHot.setOnClickListener(new MyOnClickListener(1));
+	        tvTabLove.setOnClickListener(new MyOnClickListener(2));
 	    }
 
 	    private void InitViewPager(View parentView) {
@@ -65,10 +68,12 @@ public class HomeFragment extends Fragment{
 
 	        home1 = new HomeFragment_1();
 	        home2 = new HomeFragment_2();
+	        home3 = new HomeFragment_3();
 
 	        fragmentsList.add(home1);
 	        fragmentsList.add(home2);
-	        
+	        fragmentsList.add(home3);
+
 	        mPager.setAdapter(new MyFragmentPagerAdapter(getChildFragmentManager(), fragmentsList));
 	        mPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	        mPager.setCurrentItem(0);
@@ -77,15 +82,15 @@ public class HomeFragment extends Fragment{
 
 	    private void InitWidth(View parentView) {
 	        ivBottomLine = (ImageView) parentView.findViewById(R.id.iv_bottom_line);
-	        bottomLineWidth = ivBottomLine.getLayoutParams().width;
+	        bottomLineWidth = ivBottomLine.getLayoutParams().width;//40dp
+			//获取分辨率
 	        DisplayMetrics dm = new DisplayMetrics();
 	        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-	        int screenW = dm.widthPixels;
-	        offset = (int) ((screenW / num - bottomLineWidth) / 2);
+			//当前分辨率 宽度
+			int screenW = dm.widthPixels;
+	        offset = (int) ((screenW / num - bottomLineWidth) / 3);
 	        int avg = (int) (screenW / num);
 	        position_one = avg + offset;
-	        
-	        
 	    }
 
 	    public class MyOnClickListener implements View.OnClickListener {
@@ -108,24 +113,35 @@ public class HomeFragment extends Fragment{
 	            Animation animation = null;
 	            switch (arg0) {
 	            case 0:
-	                if (currIndex == 1) {
+	                if (currIndex == 1 ||currIndex == 2) {
 	                    animation = new TranslateAnimation(position_one, offset, 0, 0);
 	                    tvTabHot.setTextColor(resources.getColor(R.color.lightwhite));
-	                } 
+						tvTabLove.setTextColor(resources.getColor(R.color.lightwhite));
+	                }
+
 	                tvTabNew.setTextColor(resources.getColor(R.color.white));
 	                break;
 	            case 1:
-	                if (currIndex == 0) {
+	                if (currIndex == 0 ||currIndex == 2) {
 	                    animation = new TranslateAnimation(offset, position_one, 0, 0);
 	                    tvTabNew.setTextColor(resources.getColor(R.color.lightwhite));
-	                } 
+						tvTabLove.setTextColor(resources.getColor(R.color.lightwhite));
+	                }
 	                tvTabHot.setTextColor(resources.getColor(R.color.white));
 	                break;
+				case 2:
+					if (currIndex == 1||currIndex == 0) {
+						animation = new TranslateAnimation(offset, position_one, 0, 0);
+						tvTabHot.setTextColor(resources.getColor(R.color.lightwhite));
+						tvTabNew.setTextColor(resources.getColor(R.color.lightwhite));
+					}
+					tvTabLove.setTextColor(resources.getColor(R.color.white));
+					break;
 	            }
 	            currIndex = arg0;
-	            animation.setFillAfter(true);
-	            animation.setDuration(300);
-	            ivBottomLine.startAnimation(animation);
+//	            animation.setFillAfter(true);
+//	            animation.setDuration(300);
+//	            ivBottomLine.startAnimation(animation);
 	        }
 
 	        @Override
