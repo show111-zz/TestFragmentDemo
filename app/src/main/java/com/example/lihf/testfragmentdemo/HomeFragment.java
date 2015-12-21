@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment{
     private int bottomLineWidth;
     private int offset = 0;
     private int position_one;
-    public final static int num = 3 ;
+    public final static int NUM = 3 ;
     Fragment home1;
     Fragment home2;
     Fragment home3;
@@ -88,8 +88,8 @@ public class HomeFragment extends Fragment{
 	        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 			//当前分辨率 宽度
 			int screenW = dm.widthPixels;
-	        offset = (int) ((screenW / num - bottomLineWidth) / 3);
-	        int avg = (int) (screenW / num);
+	        offset = (int) ((screenW / NUM - bottomLineWidth) / NUM);
+	        int avg = (int) (screenW / NUM);
 	        position_one = avg + offset;
 	    }
 
