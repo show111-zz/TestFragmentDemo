@@ -23,13 +23,13 @@ public class HomeFragment extends Fragment{
 	Resources resources;
     private ViewPager mPager;
     private ArrayList<Fragment> fragmentsList;
-    private ImageView ivBottomLine;
+//    private ImageView ivBottomLine;
     private TextView tvTabNew, tvTabHot,tvTabLove;
 
     private int currIndex = 0;
     private int bottomLineWidth;
-    private int offset = 0;
-    private int position_one;
+//    private int offset = 0;
+//    private int position_one;
     public final static int NUM = 3 ;
     Fragment home1;
     Fragment home2;
@@ -38,17 +38,16 @@ public class HomeFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_home, null);
 		resources = getResources();
-        InitWidth(view);
+//        InitWidth(view);
         InitTextView(view);
         InitViewPager(view);
-        TranslateAnimation animation = new TranslateAnimation(position_one, offset, 0, 0);
+//        TranslateAnimation animation = new TranslateAnimation(position_one, offset, 0, 0);
         tvTabHot.setTextColor(resources.getColor(R.color.lightwhite));
-        animation.setFillAfter(true);
-        animation.setDuration(300);
-        ivBottomLine.startAnimation(animation);
+//        animation.setFillAfter(true);
+//        animation.setDuration(300);
+//        ivBottomLine.startAnimation(animation);
 		return view;
 	}
 	
@@ -81,16 +80,16 @@ public class HomeFragment extends Fragment{
 	    }
 
 	    private void InitWidth(View parentView) {
-	        ivBottomLine = (ImageView) parentView.findViewById(R.id.iv_bottom_line);
-	        bottomLineWidth = ivBottomLine.getLayoutParams().width;//40dp
+//	        ivBottomLine = (ImageView) parentView.findViewById(R.id.iv_bottom_line);
+//	        bottomLineWidth = ivBottomLine.getLayoutParams().width;//40dp
 			//获取分辨率
 	        DisplayMetrics dm = new DisplayMetrics();
 	        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 			//当前分辨率 宽度
-			int screenW = dm.widthPixels;
-	        offset = (int) ((screenW / NUM - bottomLineWidth) / NUM);
-	        int avg = (int) (screenW / NUM);
-	        position_one = avg + offset;
+//			int screenW = dm.widthPixels;
+//	        offset = (int) ((screenW / NUM - bottomLineWidth) / NUM);
+//	        int avg = (int) (screenW / NUM);
+//	        position_one = avg + offset;
 	    }
 
 	    public class MyOnClickListener implements View.OnClickListener {
@@ -114,7 +113,7 @@ public class HomeFragment extends Fragment{
 	            switch (arg0) {
 	            case 0:
 	                if (currIndex == 1 ||currIndex == 2) {
-	                    animation = new TranslateAnimation(position_one, offset, 0, 0);
+//	                    animation = new TranslateAnimation(position_one, offset, 0, 0);
 	                    tvTabHot.setTextColor(resources.getColor(R.color.lightwhite));
 						tvTabLove.setTextColor(resources.getColor(R.color.lightwhite));
 	                }
@@ -123,7 +122,7 @@ public class HomeFragment extends Fragment{
 	                break;
 	            case 1:
 	                if (currIndex == 0 ||currIndex == 2) {
-	                    animation = new TranslateAnimation(offset, position_one, 0, 0);
+//	                    animation = new TranslateAnimation(offset, position_one, 0, 0);
 	                    tvTabNew.setTextColor(resources.getColor(R.color.lightwhite));
 						tvTabLove.setTextColor(resources.getColor(R.color.lightwhite));
 	                }
@@ -131,7 +130,7 @@ public class HomeFragment extends Fragment{
 	                break;
 				case 2:
 					if (currIndex == 1||currIndex == 0) {
-						animation = new TranslateAnimation(offset, position_one, 0, 0);
+//						animation = new TranslateAnimation(offset, position_one, 0, 0);
 						tvTabHot.setTextColor(resources.getColor(R.color.lightwhite));
 						tvTabNew.setTextColor(resources.getColor(R.color.lightwhite));
 					}
